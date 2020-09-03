@@ -9,11 +9,8 @@ function App() {
   fetch('https://getpocket.com/v3/oauth/request', {
     method: 'POST',
     headers: {
-      
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Hasura-Client-Name':'hasura-console',
-      'x-hasura-admin-secret':'jvhgjjh',
     },
     body: JSON.stringify({consumer_key: '92104-32f15adc016c93919a53d671',redirect_uri:'https://google.com'})
   })
