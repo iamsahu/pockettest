@@ -35,15 +35,51 @@ function App() {
   }
 
   function SendToAuto(){
-    var link="https://getpocket.com/auth/authorize?code="+code+"&consumer_key=92104-32f15adc016c93919a53d671"
+    
+    var link="https://getpocket.com/v3/oauth/authorize?code="+code+"&consumer_key=92104-32f15adc016c93919a53d671"
     console.log('hello')
+    // axios.post('https://getpocket.com/auth/authorize', {
+    //     'consumer_key': '92104-32f15adc016c93919a53d671',
+    //     'redirect_uri': 'https://pockettest.vercel.app/'
+    //   })
     fetch(link,{
       headers : { 
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Accept': 'application/x-www-form-urlencoded'
        }
 
-    }).then((r) => {return r.json()})
+    })
+    // .then((response) => {
+    //   const reader = response.body.getReader();
+    //   const stream = new ReadableStream({
+    //     start(controller) {
+    //       // The following function handles each data chunk
+    //       function push() {
+    //         // "done" is a Boolean and value a "Uint8Array"
+    //         reader.read().then(({ done, value }) => {
+    //           // Is there no more data to read?
+    //           if (done) {
+    //             // Tell the browser that we have finished sending data
+    //             controller.close();
+    //             return;
+    //           }
+    
+    //           // Get the data and send it to the browser via the controller
+              
+    //           controller.enqueue(value);
+    //           push();
+    //         });
+    //       };
+          
+    //       push();
+    //     }
+    //   });
+    // })
+    .then((r) => {
+      console.log(r)
+      return r.text()})
     .then((data) => {
       console.log(data)
       
