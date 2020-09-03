@@ -9,7 +9,7 @@ function App() {
   fetch('https://getpocket.com/v3/oauth/request', {
     method: 'POST',
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Hasura-Client-Name':'hasura-console',
