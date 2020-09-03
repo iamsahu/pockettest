@@ -37,7 +37,13 @@ function App() {
   function SendToAuto(){
     var link="https://getpocket.com/auth/authorize?code="+code+"&consumer_key=92104-32f15adc016c93919a53d671"
     console.log('hello')
-    fetch(link).then((r) => {return r.json()})
+    fetch(link,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+
+    }).then((r) => {return r.json()})
     .then((data) => {
       console.log(data)
       
