@@ -5,34 +5,36 @@ import './App.css';
 
 
 function App() {
-  async function main() {
-    try {
-        var auth = require("pocket-auth");
+  // let pocket = require('pocket-api')
+  fetch('https://getpocket.com/v3/oauth/request', {
+    method: 'POST',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Hasura-Client-Name':'hasura-console',
+      'x-hasura-admin-secret':'jvhgjjh',
+    },
+    body: JSON.stringify({consumer_key: '92104-32f15adc016c93919a53d671',redirect_uri:'https://google.com'})
+  })
+  .then(r => r.json())
+  .then((data) => {
+    console.log(data)
+              });
+// let consumer_key = '92104-32f15adc016c93919a53d671';
+
+// let pocket = new PocketAPI(consumer_key);
+
+// pocket.getRequestToken()
+// .then((response) => {
+//     console.log(response)
+//     //returns request_token
+// })
   
-        var consumerKey = "92104-32f15adc016c93919a53d671";
-        var redirectUri = "https://google.com";
-  
-        let code = await auth.fetchToken(consumerKey, redirectUri, {});
-        let uri = auth.getRedirectUrl(code.code, redirectUri);
-        console.log("Visit the following URL and click approve in the next 10 seconds:");
-        console.log(uri);
-  
-        setTimeout(async function(){
-            try {
-                let r = await auth.getAccessToken(consumerKey, code.code);
-                console.log(r);
-            } catch (err) {
-                console.log("You didn't click the link and approve the application in time");
-            }
-        }, 10000);
-    } catch (err) {
-        console.log(err);
-    }
-  }
 
   return (
     <div className="App">
-      <button onClick={main}>Click!</button>
+      <button >Click!</button>
     </div>
   );
 }
